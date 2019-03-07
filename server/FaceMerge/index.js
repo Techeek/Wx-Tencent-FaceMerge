@@ -2,9 +2,9 @@ const cloud = require('wx-server-sdk') //小程序云开发SDK
 const tencentcloud = require("tencentcloud-sdk-nodejs"); //腾讯云API 3.0 SDK
 const secret = require('./config.js');
 cloud.init({
-  env: 'release-a33bce'
+  env: 'test-f97abe'
 }) //云开发初始化
-var synDetectFace = function (imgbase64) { //人脸识别API
+var synDetectFace = function(imgbase64) { //人脸识别API
   const FacefusionClient = tencentcloud.facefusion.v20181201.Client; //API版本
   const models = tencentcloud.facefusion.v20181201.Models; //API版本
 
@@ -17,13 +17,13 @@ var synDetectFace = function (imgbase64) { //人脸识别API
   httpProfile.endpoint = "facefusion.tencentcloudapi.com"; //腾讯云人脸识别API接口
   let clientProfile = new ClientProfile();
   clientProfile.httpProfile = httpProfile;
-  let client = new IaiClient(cred, "", clientProfile); //调用就近地域
+  let client = new FacefusionClient(cred, "", clientProfile); //调用就近地域
 
   let req = new models.FaceFusionRequest();
   let params = '{"ProjectId":"101000","ModelId":"qc_101000_113732_2","Image":"' + imgbase64 + '","RspImgType":"url"}' //拼接参数
   req.from_json_string(params);
-  return new Promise(function (resolve, reject) { //构造异步函数
-    client.FaceFusion(req, function (errMsg, response) {
+  return new Promise(function(resolve, reject) { //构造异步函数
+    client.FaceFusion(req, function(errMsg, response) {
       if (errMsg) {
         reject(errMsg)
       } else {
@@ -33,16 +33,8 @@ var synDetectFace = function (imgbase64) { //人脸识别API
   })
 }
 
-
-exports.main = async (event, context) => {
-  const fileList = [event.fileID] //读取来自客户端的fileID
-  console.log("fileID:" + event.fileID)
-  const result = await cloud.getTempFileURL({ //向云存储发起读取文件临时地址请求
-    fileList,
-  })
-  console.log("result:" + JSON.stringify(result))
-  const url = result.fileList[0].tempFileURL
-  console.log("url:" + url)
-  datas = await synDetectFace(url) //调用异步函数，向腾讯云API发起人脸融合请求
-  return datas
+exports.main = async(event, context) => {
+  const imgbase64 = [event.base64] //读取来自客户端图片base64
+  datas = await synDetectFace(imgbase64) //调用异步函数，向腾讯云API发起人脸融合请求
+  return datas //返回腾讯云API的数据到客户端
 }
