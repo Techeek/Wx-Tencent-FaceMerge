@@ -1,5 +1,5 @@
 <view class="image_viwe_size">
-  <image class='image_size' src="{{image_src}}" style='opacity:{{image_opacity}}'></image>
+  <image class='image_size' src="{{image_src}}" animation="{{animationData}}"></image>
 </view>
 <view class='button_viwe_size'>
   <button class="button_size" bindtap="UploadImage">我也要生成</button>

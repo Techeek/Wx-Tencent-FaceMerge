@@ -2,7 +2,7 @@ Page({
   data: {
     image_src: "../../libs/img/image.png",
     image_height: "396",
-    image_opacity: "1"
+    animationData: {}
   },
   UploadImage() {
     var myThis = this
@@ -56,25 +56,31 @@ Page({
       env: 'test-aa10b0'
     })
   },
-  onReady:function(){
-    var myThis = this
-    setTimeout(function () {
-      var image_opacity = 1
-      for (var i = 0; i < 200; i++) {
-        image_opacity = image_opacity - 0.005
-        myThis.setData({
-          image_opacity: image_opacity
-        })
+  onReady: function() {
+    var animation = wx.createAnimation({
+      duration: 1000,
+      timingFunction: 'ease',
+    })
+    this.animation = animation
+    this.setData({
+      animationData: animation.export()
+    })
+    var n = 0;
+    var m = true;
+    setInterval(function () {
+      n = n + 1;
+      if (m) {
+        this.animation.rotate(360 * (n)).scale(1.2, 1.2).step()
+        m = !m;
+      } else {
+        this.animation.rotate(360 * (n)).scale(1, 1).step()
+        m = !m;
       }
-      myThis.setData({
-        image_src: "../../libs/img/image2.jpg"
+
+      this.setData({
+        animationData: this.animation.export()
       })
-      for (var i = 0; i < 200; i++) {
-        image_opacity = image_opacity + 0.005
-        myThis.setData({
-          image_opacity: image_opacity
-        })
-      }
-    }, 3000)
+    }.bind(this), 2000)
   }
 })
+
