@@ -1,7 +1,8 @@
 Page({
   data: {
-    image_src: "../../libs/img/user.svg",
-    image_height: "200"
+    image_src: "../../libs/img/image.png",
+    image_height: "396",
+    image_opacity: "1"
   },
   UploadImage() {
     var myThis = this
@@ -33,7 +34,7 @@ Page({
                 console.log(cloud_callFunction_res)
                 myThis.setData({
                   image_src: cloud_callFunction_res.result.Image,
-                  image_height:253
+                  image_height: 253
                 })
               },
               fail(err) {
@@ -52,7 +53,28 @@ Page({
   },
   onLoad: function() {
     wx.cloud.init({
-      env: 'test-f97abe'
+      env: 'test-aa10b0'
     })
+  },
+  onReady:function(){
+    var myThis = this
+    setTimeout(function () {
+      var image_opacity = 1
+      for (var i = 0; i < 200; i++) {
+        image_opacity = image_opacity - 0.005
+        myThis.setData({
+          image_opacity: image_opacity
+        })
+      }
+      myThis.setData({
+        image_src: "../../libs/img/image2.jpg"
+      })
+      for (var i = 0; i < 200; i++) {
+        image_opacity = image_opacity + 0.005
+        myThis.setData({
+          image_opacity: image_opacity
+        })
+      }
+    }, 3000)
   }
 })

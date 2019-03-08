@@ -1,6 +1,6 @@
 <view class="image_viwe_size">
-  <image src="{{image_src}}" style="width: 200px; height: {{image_height}}px;"></image>
+  <image class='image_size' src="{{image_src}}" style='opacity:{{image_opacity}}'></image>
 </view>
 <view class='button_viwe_size'>
-  <button class="button_size" type="primary" bindtap="UploadImage">上传图片</button>
+  <button class="button_size" bindtap="UploadImage">我也要生成</button>
 </view>
