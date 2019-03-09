@@ -1,8 +1,9 @@
 Page({
   data: {
     image_src: "../../libs/img/image.png",
-    image_height: "396",
-    animationData: {}
+    animationData: {},
+    image_mark_here: "image_mark_here",
+    image_mark_leave: "image_mark_leave"
   },
   UploadImage() {
     var myThis = this
@@ -32,9 +33,8 @@ Page({
                   duration: 500
                 })
                 console.log(cloud_callFunction_res)
-                myThis.setData({
-                  image_src: cloud_callFunction_res.result.Image,
-                  image_height: 253
+                wx.navigateTo({
+                  url: '../composite/composite?url=' + cloud_callFunction_res.result.Image
                 })
               },
               fail(err) {
@@ -51,36 +51,50 @@ Page({
       }
     })
   },
-  onLoad: function() {
+    onLoad: function() {
     wx.cloud.init({
       env: 'test-aa10b0'
     })
   },
   onReady: function() {
-    var animation = wx.createAnimation({
-      duration: 1000,
-      timingFunction: 'ease',
-    })
+    var myThis = this
+    var animation = wx.createAnimation()
     this.animation = animation
     this.setData({
       animationData: animation.export()
     })
-    var n = 0;
-    var m = true;
-    setInterval(function () {
-      n = n + 1;
-      if (m) {
-        this.animation.rotate(360 * (n)).scale(1.2, 1.2).step()
-        m = !m;
+    var image_opacity_status = true;
+    var image_src_status = true;
+    setInterval(function() {
+      if (image_opacity_status) {
+        this.animation.opacity(0).step({
+          delay: 1500,
+          duration: 500
+        })
+        setTimeout(function() {
+          if (image_src_status) {
+            myThis.setData({
+              image_src: "../../libs/img/image.png",
+              image_mark_here: "image_mark_here",
+              image_mark_leave: "image_mark_leave"
+            })
+          } else {
+            myThis.setData({
+              image_src: "../../libs/img/image2.jpg",
+              image_mark_here: "image_mark_leave",
+              image_mark_leave: "image_mark_here"
+            })
+          }
+        }, 2000)
+        image_opacity_status = !image_opacity_status;
       } else {
-        this.animation.rotate(360 * (n)).scale(1, 1).step()
-        m = !m;
+        this.animation.opacity(1).step()
+        image_opacity_status = !image_opacity_status;
+        image_src_status = !image_src_status;
       }
-
       this.setData({
         animationData: this.animation.export()
       })
     }.bind(this), 2000)
   }
 })
-

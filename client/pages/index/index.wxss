@@ -1,7 +1,7 @@
 @import "../../libs/wxss/weui.wxss";
 
 .image_viwe_size {
-  padding-top: 25px;
+  padding-top: 40px;
   padding-bottom: 30px;
   display: flex;
   justify-content: center;
@@ -10,13 +10,12 @@
 .image_size {
   width: 280px;
   height: 396px;
-  box-shadow: 0px 3px 10px 2px #444444;
+  box-shadow: 0px 10px 10px 2px #888;
 }
 
 .button_viwe_size {
   display: flex;
-  padding-top: 10px;
-  padding-bottom: 10px;
+  padding-top: 25px;
 }
 
 .button_size {
@@ -26,22 +25,48 @@
   background-color: #00a4ff;
   color: #fff;
   font-size: 22px;
-  line-height: 50px
+  line-height: 50px;
 }
 
 .text_viwe_size {
-  padding-top: 20px;
-  padding-bottom: 30px;
-  padding-left: 30px;
-  padding-right: 30px;
+  padding-top: 10px;
+  display: flex;
+  justify-content: center;
 }
 
 .text_size {
   display: flex;
-  color: #444;
+  color: #999999;
+  font-size: 10px;
 }
 
 .progress_view_size {
   padding-left: 30px;
   padding-right: 30px;
+}
+
+.image_mark_here {
+  background-color: #ffffff;
+  border: 1px solid #00a4ff;
+  border-radius: 50%;
+  box-sizing: border-box;
+  height: 8px;
+  width: 8px;
+}
+.image_mark_leave{
+  background-color: #00a4ff;
+  border-radius: 50%;
+  box-sizing: border-box;
+  height: 8px;
+  width: 8px;
+}
+
+.image_viwe_mark {
+  display: flex;
+  justify-content: center;
+}
+
+.image_viwe_mark_size {
+  padding-left: 5px;
+  padding-right: 5px;
 }

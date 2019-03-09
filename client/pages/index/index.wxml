@@ -1,6 +1,14 @@
 <view class="image_viwe_size">
   <image class='image_size' src="{{image_src}}" animation="{{animationData}}"></image>
 </view>
+<view class='image_viwe_mark'>
+  <view class='{{image_mark_leave}}'></view>
+  <view class='image_viwe_mark_size'></view>
+  <view class='{{image_mark_here}}'></view>
+</view>
 <view class='button_viwe_size'>
-  <button class="button_size" bindtap="UploadImage">我也要生成</button>
+  <button class="button_size" bindtap="UploadImage">用这张照片生成</button>
+</view>
+<view class='text_viwe_size'>
+<text class='text_size'>腾讯云AI团队 · 天天P图团队提供技术支持</text>
 </view>
