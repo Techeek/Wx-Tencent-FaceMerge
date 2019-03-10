@@ -1,11 +1,11 @@
 <view class="image_viwe_size">
-  <image class='image_size' src="{{image_src}}"></image>
+  <image class='image_size' src="{{image_src}}" bindtap="previewImage"></image>
 </view>
 <view class='text_viwe_size'>
 <text class='text_size'>长按图片保存在相册</text>
 </view>
 <view class='button_viwe_size'>
-  <button class="button_size" bindtap="go_to">重新生成</button>
+  <button class="button_size" bindtap="uploadImage">{{button_text}}</button>
 </view>
 <view class='text_viwe_size'>
 <text class='text_size'>这么好看的照片，不放在朋友圈秀一下？</text>

@@ -1,62 +1,21 @@
 Page({
   data: {
-    image_src: "../../libs/img/image.png",
     animationData: {},
+    image_src: "../../libs/img/image.png",
     image_mark_here: "image_mark_here",
-    image_mark_leave: "image_mark_leave"
+    image_mark_leave: "image_mark_leave",
+    projectId: "101000",
+    modelId: "qc_101000_113732_2",
   },
-  UploadImage() {
+
+  composite() {
     var myThis = this
-    wx.chooseImage({
-      count: 1,
-      sizeType: ['compressed'],
-      sourceType: ['album', 'camera'],
-      success(chooseImage_res) {
-        wx.showLoading({
-          title: '加载中...',
-        })
-        console.log("临时地址:" + chooseImage_res.tempFilePaths[0])
-        wx.getFileSystemManager().readFile({
-          filePath: chooseImage_res.tempFilePaths[0], //选择图片返回的相对路径
-          encoding: 'base64', //编码格式
-          success(base64_res) {
-            wx.cloud.callFunction({
-              name: "FaceMerge",
-              data: {
-                base64: base64_res.data
-              },
-              success(cloud_callFunction_res) {
-                wx.hideLoading()
-                wx.showToast({
-                  title: '成功',
-                  icon: 'success',
-                  duration: 500
-                })
-                console.log(cloud_callFunction_res)
-                wx.navigateTo({
-                  url: '../composite/composite?url=' + cloud_callFunction_res.result.Image
-                })
-              },
-              fail(err) {
-                console.log(err)
-                wx.hideLoading()
-                wx.showModal({
-                  title: '失败',
-                  content: "人脸融合失败，请重试！"
-                })
-              }
-            })
-          }
-        })
-      }
+    wx.navigateTo({
+      url: '../composite/composite?projectId=' + myThis.data.projectId + '&modelId=' + myThis.data.modelId + '&image_src=' + myThis.data.image_src
     })
   },
-    onLoad: function() {
-    wx.cloud.init({
-      env: 'test-aa10b0'
-    })
-  },
-  onReady: function() {
+
+  onLoad: function() {
     var myThis = this
     var animation = wx.createAnimation()
     this.animation = animation
@@ -76,13 +35,15 @@ Page({
             myThis.setData({
               image_src: "../../libs/img/image.png",
               image_mark_here: "image_mark_here",
-              image_mark_leave: "image_mark_leave"
+              image_mark_leave: "image_mark_leave",
+              modelId: "qc_101000_113732_2"
             })
           } else {
             myThis.setData({
               image_src: "../../libs/img/image2.jpg",
               image_mark_here: "image_mark_leave",
-              image_mark_leave: "image_mark_here"
+              image_mark_leave: "image_mark_here",
+              modelId: "qc_101000_174956_66"
             })
           }
         }, 2000)

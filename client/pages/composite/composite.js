@@ -1,69 +1,79 @@
 // client/pages/composite/composite.js
 Page({
-
-  /**
-   * 页面的初始数据
-   */
   data: {
-    image_src: ""
+    button_text: "上传照片",
+    image_src: [],
+    projectId: "",
+    modelId: ""
   },
 
-  /**
-   * 生命周期函数--监听页面加载
-   */
+  uploadImage() {
+    var myThis = this;
+    wx.chooseImage({
+      count: 1,
+      sizeType: ['compressed'],
+      sourceType: ['album', 'camera'],
+      success(chooseImage_res) {
+        wx.showLoading({
+          title: '生成中...',
+        })
+        console.log("临时地址:" + chooseImage_res.tempFilePaths[0])
+        wx.getFileSystemManager().readFile({
+          filePath: chooseImage_res.tempFilePaths[0], //选择图片返回的相对路径
+          encoding: 'base64', //编码格式
+          success(base64_res) {
+            wx.cloud.callFunction({
+              name: "FaceMerge",
+              data: {
+                base64: base64_res.data,
+                projectId: myThis.data.projectId,
+                modelId: myThis.data.modelId
+              },
+              success(cloud_callFunction_res) {
+                wx.hideLoading()
+                wx.showToast({
+                  title: '成功',
+                  icon: 'success',
+                  duration: 500
+                })
+                console.log(cloud_callFunction_res)
+                myThis.setData({
+                  image_src: cloud_callFunction_res.result.Image,
+                  button_text: "重新生成"
+                })
+              },
+              fail(err) {
+                console.log(err)
+                wx.hideLoading()
+                wx.showModal({
+                  title: '失败',
+                  content: "人脸融合失败，请重试！"
+                })
+              }
+            })
+          }
+        })
+      }
+    })
+  },
+
+  previewImage:function(e) {
+    var current = e.target.dataset.src
+    wx.previewImage({
+      current: current,
+      urls: this.data.image_src[0]
+    })
+  },
+
   onLoad: function(options) {
+    wx.cloud.init({
+      env: 'test-aa10b0'
+    })
     this.setData({
-      image_src: options.url
+      projectId: options.projectId,
+      modelId: options.modelId,
+      image_src: options.image_src
     });
-    console.log(options.url)
-  },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function() {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function() {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function() {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function() {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function() {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function() {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function() {
-
+    console.log(options.projectId + options.modelId)
   }
 })

@@ -7,7 +7,7 @@
   <view class='{{image_mark_here}}'></view>
 </view>
 <view class='button_viwe_size'>
-  <button class="button_size" bindtap="UploadImage">用这张照片生成</button>
+  <button class="button_size" bindtap="composite">用这张照片生成</button>
 </view>
 <view class='text_viwe_size'>
 <text class='text_size'>腾讯云AI团队 · 天天P图团队提供技术支持</text>

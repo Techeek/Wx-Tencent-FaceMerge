@@ -4,7 +4,7 @@ const secret = require('./config.js');
 cloud.init({
   env: 'test-aa10b0'
 }) //云开发初始化
-var synDetectFace = function(imgbase64) { //人脸识别API
+var synDetectFace = function (imgbase64, projectId, modelId) { //人脸识别API
   const FacefusionClient = tencentcloud.facefusion.v20181201.Client; //API版本
   const models = tencentcloud.facefusion.v20181201.Models; //API版本
 
@@ -20,7 +20,7 @@ var synDetectFace = function(imgbase64) { //人脸识别API
   let client = new FacefusionClient(cred, "", clientProfile); //调用就近地域
 
   let req = new models.FaceFusionRequest();
-  let params = '{"ProjectId":"101000","ModelId":"qc_101000_113732_2","Image":"' + imgbase64 + '","RspImgType":"url"}' //拼接参数
+  let params = '{"ProjectId":"' + projectId + '","ModelId":"' + modelId + '","Image":"' + imgbase64 + '","RspImgType":"url"}' //拼接参数
   req.from_json_string(params);
   return new Promise(function(resolve, reject) { //构造异步函数
     client.FaceFusion(req, function(errMsg, response) {
@@ -35,6 +35,8 @@ var synDetectFace = function(imgbase64) { //人脸识别API
 
 exports.main = async(event, context) => {
   const imgbase64 = [event.base64] //读取来自客户端图片base64
-  datas = await synDetectFace(imgbase64) //调用异步函数，向腾讯云API发起人脸融合请求
+  const projectId = [event.projectId] //读取来自客户端图片base64
+  const modelId = [event.modelId] //读取来自客户端图片base64
+  datas = await synDetectFace(imgbase64, projectId, modelId) //调用异步函数，向腾讯云API发起人脸融合请求
   return datas //返回腾讯云API的数据到客户端
 }
