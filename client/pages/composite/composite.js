@@ -2,7 +2,8 @@
 Page({
   data: {
     button_text: "上传照片",
-    image_src: [],
+    image_src: "",
+    image_src_list: [],
     projectId: "",
     modelId: ""
   },
@@ -57,11 +58,14 @@ Page({
     })
   },
 
-  previewImage:function(e) {
-    var current = e.target.dataset.src
+  previewImage:function() {
+    var newarray = [this.data.image_src]
+    this.setData({
+      image_src_list: newarray
+    })
+    console.log("数据" + this.data.image_src_list)
     wx.previewImage({
-      current: current,
-      urls: this.data.image_src[0]
+      urls: this.data.image_src_list
     })
   },
 
@@ -74,6 +78,6 @@ Page({
       modelId: options.modelId,
       image_src: options.image_src
     });
-    console.log(options.projectId + options.modelId)
+    console.log(options.projectId + options.modelId + options.image_src)
   }
 })
