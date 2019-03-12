@@ -40,10 +40,10 @@ Page({
             })
           } else {
             myThis.setData({
-              image_src: "../../libs/img/image2.jpg",
+              image_src: "../../libs/img/poster_woman.jpg",
               image_mark_here: "image_mark_leave",
               image_mark_leave: "image_mark_here",
-              modelId: "qc_101000_174956_66"
+              modelId: "qc_101000_114812_70"
             })
           }
         }, 2000)
