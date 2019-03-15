@@ -1,5 +1,6 @@
 Page({
   data: {
+    animation_translate: {},
     animationData: {},
     image_src: "../../libs/img/image.png",
     image_mark_here: "image_mark_here",
@@ -14,14 +15,10 @@ Page({
       url: '../composite/composite?projectId=' + myThis.data.projectId + '&modelId=' + myThis.data.modelId + '&image_src=' + myThis.data.image_src
     })
   },
-
   onLoad: function() {
-    var myThis = this
-    var animation = wx.createAnimation()
-    this.animation = animation
-    this.setData({
-      animationData: animation.export()
-    })
+    var myThis = this;
+    var animation = wx.createAnimation();
+    this.animation = animation;
     var image_opacity_status = true;
     var image_src_status = true;
     setInterval(function() {
