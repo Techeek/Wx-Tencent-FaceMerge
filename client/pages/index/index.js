@@ -1,4 +1,12 @@
+const comm = require('comm.js')
+
 Page({
+  helloMINA() {
+    comm.sayHello('MINA')
+  },
+  goodbyeMINA() {
+    comm.sayGoodbye('MINA')
+  },
   data: {
     animation_translate: {},
     animationData: {},
@@ -7,6 +15,7 @@ Page({
     image_mark_leave: "image_mark_leave",
     projectId: "101000",
     modelId: "qc_101000_113732_2",
+    sysscreenHeight:""
   },
 
   composite() {
@@ -54,5 +63,13 @@ Page({
         animationData: this.animation.export()
       })
     }.bind(this), 2000)
+    wx.getSystemInfo({
+      success(res){
+        console.log(res.screenHeight)
+        myThis.setData({
+          sysscreenHeight: res.screenHeight - 650
+        })
+      }
+    })
   }
 })
