@@ -5,7 +5,8 @@ Page({
     image_src: "",
     image_src_list: [],
     projectId: "",
-    modelId: ""
+    modelId: "",
+    sysscreenHeight: ""
   },
 
   uploadImage() {
@@ -70,6 +71,7 @@ Page({
   },
 
   onLoad: function(options) {
+    var myThis = this;
     wx.cloud.init({
       env: 'test-aa10b0'
     })
@@ -79,5 +81,13 @@ Page({
       image_src: options.image_src
     });
     console.log(options.projectId + options.modelId + options.image_src)
+    wx.getSystemInfo({
+      success(res) {
+        console.log(res.screenHeight)
+        myThis.setData({
+          sysscreenHeight: res.screenHeight - 660
+        })
+      }
+    })
   }
 })

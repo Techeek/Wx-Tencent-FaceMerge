@@ -1,20 +1,12 @@
-const comm = require('comm.js')
-
 Page({
-  helloMINA() {
-    comm.sayHello('MINA')
-  },
-  goodbyeMINA() {
-    comm.sayGoodbye('MINA')
-  },
   data: {
     animation_translate: {},
     animationData: {},
-    image_src: "../../libs/img/image.png",
+    image_src: "../../libs/img/man.jpg",
     image_mark_here: "image_mark_here",
     image_mark_leave: "image_mark_leave",
-    projectId: "101000",
-    modelId: "qc_101000_113732_2",
+    projectId: "101124",
+    modelId: "qc_101124_163732_1",
     sysscreenHeight:""
   },
 
@@ -39,17 +31,17 @@ Page({
         setTimeout(function() {
           if (image_src_status) {
             myThis.setData({
-              image_src: "../../libs/img/image.png",
+              image_src: "../../libs/img/man.jpg",
               image_mark_here: "image_mark_here",
               image_mark_leave: "image_mark_leave",
-              modelId: "qc_101000_113732_2"
+              modelId: "qc_101124_163732_1"
             })
           } else {
             myThis.setData({
-              image_src: "../../libs/img/poster_woman.jpg",
+              image_src: "../../libs/img/woman.jpg",
               image_mark_here: "image_mark_leave",
               image_mark_leave: "image_mark_here",
-              modelId: "qc_101000_114812_70"
+              modelId: "qc_101124_163735_2"
             })
           }
         }, 2000)
@@ -67,7 +59,7 @@ Page({
       success(res){
         console.log(res.screenHeight)
         myThis.setData({
-          sysscreenHeight: res.screenHeight - 650
+          sysscreenHeight: res.screenHeight - 660
         })
       }
     })

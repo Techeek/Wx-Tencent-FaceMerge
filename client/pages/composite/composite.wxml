@@ -7,6 +7,6 @@
 <view class='button_viwe_size'>
   <button class="button_size" bindtap="uploadImage">{{button_text}}</button>
 </view>
-<view class='text_viwe_size'>
+<view class='text_viwe_size' style='padding-top: {{sysscreenHeight}}px;'>
 <text class='text_size'>这么好看的照片，不放在朋友圈秀一下？</text>
 </view>

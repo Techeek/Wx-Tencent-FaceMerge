@@ -9,7 +9,6 @@
 <view class='button_viwe_size'>
   <button class="button_size" bindtap="composite">用这张照片生成</button>
 </view>
-<button bindtap='goodbyeMINA'>hellow</button>
 <view class='text_viwe_size' style='padding-top: {{sysscreenHeight}}px;'>
 <text class='text_size'>腾讯云AI团队提供技术支持</text>
 </view>
