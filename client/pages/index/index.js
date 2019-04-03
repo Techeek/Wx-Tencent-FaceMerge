@@ -6,7 +6,7 @@ Page({
     image_mark_here: "image_mark_here",
     image_mark_leave: "image_mark_leave",
     projectId: "101124",
-    modelId: "qc_101124_163732_1",
+    modelId: "qc_101124_173657_4",
     sysscreenHeight:""
   },
 
@@ -25,8 +25,8 @@ Page({
     setInterval(function() {
       if (image_opacity_status) {
         this.animation.opacity(0).step({
-          delay: 1500,
-          duration: 500
+          delay: 600,
+          duration: 600
         })
         setTimeout(function() {
           if (image_src_status) {
@@ -34,17 +34,17 @@ Page({
               image_src: "../../libs/img/man.jpg",
               image_mark_here: "image_mark_here",
               image_mark_leave: "image_mark_leave",
-              modelId: "qc_101124_163732_1"
+              modelId: "qc_101124_173657_4"
             })
           } else {
             myThis.setData({
               image_src: "../../libs/img/woman.jpg",
               image_mark_here: "image_mark_leave",
               image_mark_leave: "image_mark_here",
-              modelId: "qc_101124_163735_2"
+              modelId: "qc_101124_173654_3"
             })
           }
-        }, 2000)
+        }, 1200)
         image_opacity_status = !image_opacity_status;
       } else {
         this.animation.opacity(1).step()
@@ -54,7 +54,7 @@ Page({
       this.setData({
         animationData: this.animation.export()
       })
-    }.bind(this), 2000)
+    }.bind(this), 1200)
     wx.getSystemInfo({
       success(res){
         console.log(res.screenHeight)
