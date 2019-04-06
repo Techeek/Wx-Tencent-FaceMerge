@@ -2,7 +2,6 @@
 Page({
   data: {
     button_text: "上传照片",
-    image_src_list: [],
     image_src: "../../libs/img/man.jpg",
     projectId: "101124",
     modelId: "qc_101124_173657_4",
