@@ -72,9 +72,6 @@ Page({
 
   onLoad: function(options) {
     var myThis = this;
-    wx.cloud.init({
-      env: 'test-aa10b0'
-    })
     this.setData({
       projectId: options.projectId,
       modelId: options.modelId,
