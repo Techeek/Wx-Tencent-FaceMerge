@@ -1,63 +1,67 @@
+// client/pages/composite/composite.js
 Page({
   data: {
-    animation_translate: {},
-    animationData: {},
+    button_text: "上传照片",
+    image_src_list: [],
     image_src: "../../libs/img/man.jpg",
-    image_mark_here: "image_mark_here",
-    image_mark_leave: "image_mark_leave",
     projectId: "101124",
     modelId: "qc_101124_173657_4",
-    sysscreenHeight:""
+    sysscreenHeight: ""
   },
 
-  composite() {
-    var myThis = this
-    wx.navigateTo({
-      url: '../composite/composite?projectId=' + myThis.data.projectId + '&modelId=' + myThis.data.modelId + '&image_src=' + myThis.data.image_src
-    })
-  },
-  onLoad: function() {
+  uploadImage() {
     var myThis = this;
-    var animation = wx.createAnimation();
-    this.animation = animation;
-    var image_opacity_status = true;
-    var image_src_status = true;
-    setInterval(function() {
-      if (image_opacity_status) {
-        this.animation.opacity(0).step({
-          delay: 600,
-          duration: 600
+    wx.chooseImage({
+      count: 1,
+      sizeType: ['compressed'],
+      sourceType: ['album', 'camera'],
+      success(chooseImage_res) {
+        wx.showLoading({
+          title: '生成中...',
         })
-        setTimeout(function() {
-          if (image_src_status) {
-            myThis.setData({
-              image_src: "../../libs/img/man.jpg",
-              image_mark_here: "image_mark_here",
-              image_mark_leave: "image_mark_leave",
-              modelId: "qc_101124_173657_4"
-            })
-          } else {
-            myThis.setData({
-              image_src: "../../libs/img/woman.jpg",
-              image_mark_here: "image_mark_leave",
-              image_mark_leave: "image_mark_here",
-              modelId: "qc_101124_173654_3"
+        wx.getFileSystemManager().readFile({
+          filePath: chooseImage_res.tempFilePaths[0], //选择图片返回的相对路径
+          encoding: 'base64', //编码格式
+          success(base64_res) {
+            wx.cloud.callFunction({
+              name: "FaceMerge",
+              data: {
+                base64: base64_res.data,
+                projectId: myThis.data.projectId,
+                modelId: myThis.data.modelId
+              },
+              success(cloud_callFunction_res) {
+                wx.hideLoading()
+                wx.showToast({
+                  title: '成功',
+                  icon: 'success',
+                  duration: 500
+                })
+                console.log(cloud_callFunction_res)
+                myThis.setData({
+                  image_src: cloud_callFunction_res.result.Image,
+                  button_text: "重新生成"
+                })
+              },
+              fail(err) {
+                console.log(err)
+                wx.hideLoading()
+                wx.showModal({
+                  title: '失败',
+                  content: "人脸融合失败，请重试！"
+                })
+              }
             })
           }
-        }, 1200)
-        image_opacity_status = !image_opacity_status;
-      } else {
-        this.animation.opacity(1).step()
-        image_opacity_status = !image_opacity_status;
-        image_src_status = !image_src_status;
+        })
       }
-      this.setData({
-        animationData: this.animation.export()
-      })
-    }.bind(this), 1200)
+    })
+  },
+
+  onLoad: function() {
+    var myThis = this;
     wx.getSystemInfo({
-      success(res){
-        console.log(res.screenHeight)
+      success(res) {
         myThis.setData({
           sysscreenHeight: res.screenHeight - 660
         })

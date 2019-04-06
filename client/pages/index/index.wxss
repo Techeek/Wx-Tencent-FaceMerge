@@ -2,7 +2,7 @@
 
 .image_viwe_size {
   padding-top: 40px;
-  padding-bottom: 30px;
+  padding-bottom: 10px;
   display: flex;
   justify-content: center;
 }
@@ -15,7 +15,7 @@
 
 .button_viwe_size {
   display: flex;
-  padding-top: 25px;
+  padding-top: 10px;
 }
 
 .button_size {
@@ -29,43 +29,13 @@
 }
 
 .text_viwe_size {
+  padding-top: 10px;
   display: flex;
   justify-content: center;
 }
 
 .text_size {
   display: flex;
-  color: #999999;
-  font-size: 10px;
-}
-
-.progress_view_size {
-  padding-left: 30px;
-  padding-right: 30px;
-}
-
-.image_mark_here {
-  background-color: #ffffff;
-  border: 1px solid #00a4ff;
-  border-radius: 50%;
-  box-sizing: border-box;
-  height: 8px;
-  width: 8px;
-}
-.image_mark_leave{
-  background-color: #00a4ff;
-  border-radius: 50%;
-  box-sizing: border-box;
-  height: 8px;
-  width: 8px;
-}
-
-.image_viwe_mark {
-  display: flex;
-  justify-content: center;
-}
-
-.image_viwe_mark_size {
-  padding-left: 5px;
-  padding-right: 5px;
+  color: #666666;
+  font-size: 15px;
 }

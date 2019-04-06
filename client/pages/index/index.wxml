@@ -1,14 +1,12 @@
 <view class="image_viwe_size">
-  <image class='image_size' src="{{image_src}}" animation="{{animationData}}"></image>
+  <image class='image_size' src="{{image_src}}"></image>
 </view>
-<view class='image_viwe_mark'>
-  <view class='{{image_mark_leave}}'></view>
-  <view class='image_viwe_mark_size'></view>
-  <view class='{{image_mark_here}}'></view>
+<view class='text_viwe_size'>
+<text class='text_size'>点击图片全屏查看，长按图片即可保存在相册</text>
 </view>
 <view class='button_viwe_size'>
-  <button class="button_size" bindtap="composite">用这张照片生成</button>
+  <button class="button_size" bindtap="uploadImage">{{button_text}}</button>
 </view>
 <view class='text_viwe_size' style='padding-top: {{sysscreenHeight}}px;'>
-<text class='text_size'>腾讯云AI团队提供技术支持</text>
+<text class='text_size'>这么好看的照片，不放在朋友圈秀一下？</text>
 </view>
