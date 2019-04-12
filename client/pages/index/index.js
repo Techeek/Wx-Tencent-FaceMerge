@@ -2,7 +2,7 @@
 Page({
   data: {
     button_text: "上传照片",  //首页按钮内容显示“上传照片”
-    image_src: "../../libs/img/woman.jpg", //替换为你要融合前的模型图片地址
+    image_src: "../../libs/img/man.jpg", //替换为你要融合前的模型图片地址
     image_src_list: [],  //图片预览地址，请留空
     projectId: "101124", //腾讯云人脸融合活动ID
     modelId: "qc_101124_173657_4", //腾讯云人脸融合素材ID

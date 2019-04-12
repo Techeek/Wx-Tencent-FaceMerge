@@ -3,7 +3,7 @@ const tencentcloud = require("tencentcloud-sdk-nodejs"); //腾讯云API 3.0 SDK
 const secret = require('./config.js');
 cloud.init({
   env: 'test-aa10b0'
-}) //云开发初始化
+}) //云开发初始化，请更改为你自己的环境ID。
 var synDetectFace = function (imgbase64, projectId, modelId) { //人脸识别API
   const FacefusionClient = tencentcloud.facefusion.v20181201.Client; //API版本
   const models = tencentcloud.facefusion.v20181201.Models; //API版本
