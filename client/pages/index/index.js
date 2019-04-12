@@ -6,8 +6,8 @@ Page({
     image_mark_here: "image_mark_here",
     image_mark_leave: "image_mark_leave",
     projectId: "101124",
-    modelId: "qc_101124_173657_4",
-    sysscreenHeight:""
+    modelId: "qc_101124_192757_5",
+    sysscreenHeight: ""
   },
 
   composite() {
@@ -16,32 +16,32 @@ Page({
       url: '../composite/composite?projectId=' + myThis.data.projectId + '&modelId=' + myThis.data.modelId + '&image_src=' + myThis.data.image_src
     })
   },
-  onLoad: function() {
+  onLoad: function () {
     var myThis = this;
     var animation = wx.createAnimation();
     this.animation = animation;
     var image_opacity_status = true;
     var image_src_status = true;
-    setInterval(function() {
+    setInterval(function () {
       if (image_opacity_status) {
         this.animation.opacity(0).step({
           delay: 600,
           duration: 600
         })
-        setTimeout(function() {
+        setTimeout(function () {
           if (image_src_status) {
-            myThis.setData({
-              image_src: "../../libs/img/man.jpg",
-              image_mark_here: "image_mark_here",
-              image_mark_leave: "image_mark_leave",
-              modelId: "qc_101124_173657_4"
-            })
-          } else {
             myThis.setData({
               image_src: "../../libs/img/woman.jpg",
               image_mark_here: "image_mark_leave",
               image_mark_leave: "image_mark_here",
-              modelId: "qc_101124_173654_3"
+              modelId: "qc_101124_192759_6"
+            })
+          } else {
+            myThis.setData({
+              image_src: "../../libs/img/man.jpg",
+              image_mark_here: "image_mark_here",
+              image_mark_leave: "image_mark_leave",
+              modelId: "qc_101124_192757_5"
             })
           }
         }, 1200)
@@ -54,9 +54,9 @@ Page({
       this.setData({
         animationData: this.animation.export()
       })
-    }.bind(this), 1200)
+    }.bind(this), 1300)
     wx.getSystemInfo({
-      success(res){
+      success(res) {
         console.log(res.screenHeight)
         myThis.setData({
           sysscreenHeight: res.screenHeight - 660
