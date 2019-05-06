@@ -6,7 +6,7 @@ Page({
     image_mark_here: "image_mark_here",
     image_mark_leave: "image_mark_leave",
     projectId: "101124",
-    modelId: "qc_101124_192757_5",
+    modelId: "qc_101124_221646_13",
     sysscreenHeight: ""
   },
 
@@ -34,14 +34,14 @@ Page({
               image_src: "../../libs/img/woman.jpg",
               image_mark_here: "image_mark_leave",
               image_mark_leave: "image_mark_here",
-              modelId: "qc_101124_192759_6"
+              modelId: "qc_101124_221650_14"
             })
           } else {
             myThis.setData({
               image_src: "../../libs/img/man.jpg",
               image_mark_here: "image_mark_here",
               image_mark_leave: "image_mark_leave",
-              modelId: "qc_101124_192757_5"
+              modelId: "qc_101124_221646_13"
             })
           }
         }, 1200)
