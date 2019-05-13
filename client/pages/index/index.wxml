@@ -1,12 +1,28 @@
-<view class="image_viwe_size">
-  <image class='image_size' src="{{image_src}}"></image>
+<!-- index.wxml -->
+<view class="image-view">
+  <swiper
+    class="image-list"
+    indicator-dots="{{ true }}"
+    indicator-color="rgba(0,128,200,0.25)"
+    indicator-active-color="#00a4ff"
+    autoplay="{{ false }}"
+    circular="{{ true }}"
+    current="{{ current }}"
+    bindchange="switchMaterial">
+    <swiper-item
+      wx:for="{{ materials }}"
+      wx:key="{{ item.materialId }}">
+      <image
+        src="{{ result[item.materialId] || item.materialSrc }}"
+        mode="aspectFit" />
+    </swiper-item>
+  </swiper>
 </view>
-<view class='text_viwe_size'>
-<text class='text_size'>点击图片全屏查看，长按图片即可保存在相册</text>
+
+<view class="button-view">
+  <button bindtap="choose">{{ buttonText }}</button>
 </view>
-<view class='button_viwe_size'>
-  <button class="button_size" bindtap="uploadImage">{{button_text}}</button>
-</view>
-<view class='text_viwe_size' style='padding-top: {{sysscreenHeight}}px;'>
-<text class='text_size'>这么好看的照片，不放在朋友圈秀一下？</text>
+
+<view class="text-view">
+  <text>腾讯云AI团队提供技术支持</text>
 </view>

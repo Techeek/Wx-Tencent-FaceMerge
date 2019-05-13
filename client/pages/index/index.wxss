@@ -1,41 +1,50 @@
-@import "../../libs/wxss/weui.wxss";
-
-.image_viwe_size {
-  padding-top: 40px;
-  padding-bottom: 10px;
+/* index.wxss */
+Page {
   display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: space-around;
+}
+
+.image-view {
+  height: 850rpx;
+}
+.image-list {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
   justify-content: center;
+  align-items: stretch;
+}
+.image-list swiper-item {
+  box-sizing: border-box;
+}
+.image-list image {
+  width: 100%;
+  height: 750rpx;
+  position: relative;
+  margin: 40rpx 0 60rpx;
 }
 
-.image_size {
-  width: 280px;
-  height: 396px;
-  box-shadow: 0px 10px 10px 2px #888;
+.button-view {
+  margin: 30rpx 0 20rpx;
 }
-
-.button_viwe_size {
-  display: flex;
-  padding-top: 10px;
-}
-
-.button_size {
-  height: 50px;
-  width: 200px;
-  border-radius: 100px;
+.button-view button {
+  font-size: 34rpx;
+  width: 50%;
+  height: 100rpx;
+  line-height: 100rpx;
+  border-radius: 100rpx;
+  padding: 0;
+  box-sizing: content-box;
   background-color: #00a4ff;
   color: #fff;
-  font-size: 22px;
-  line-height: 50px;
 }
 
-.text_viwe_size {
-  padding-top: 10px;
-  display: flex;
-  justify-content: center;
+.text-view {
+  text-align: center;
 }
-
-.text_size {
-  display: flex;
-  color: #666666;
-  font-size: 15px;
+.text-view text {
+  font-size: 28rpx;
+  color: #666;
 }

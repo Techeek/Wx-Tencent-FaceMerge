@@ -13,8 +13,8 @@
 		"uglifyFileName": false
 	},
 	"compileType": "miniprogram",
-	"libVersion": "2.6.1",
-	"appid": "wx7cd835dc0ab78332",
+	"libVersion": "2.6.6",
+	"appid": "wx5f8d9ac762603f8b",
 	"projectname": "FaceMerge",
 	"cloudfunctionRoot": "server/",
 	"miniprogramRoot": "client/",
@@ -22,6 +22,8 @@
 		"hidedInDevtools": []
 	},
 	"isGameTourist": false,
+	"simulatorType": "wechat",
+	"simulatorPluginLibVersion": {},
 	"condition": {
 		"search": {
 			"current": -1,
